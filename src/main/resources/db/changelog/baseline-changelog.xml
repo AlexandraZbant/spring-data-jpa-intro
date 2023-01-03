@@ -21,4 +21,11 @@
             <column name="next_val" type="BIGINT"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="5" author="AZ">
+        <sql>
+            alter table book
+            add column author_id BIGINT REFERENCES author(id)
+        </sql>
+    </changeSet>
 </databaseChangeLog>
