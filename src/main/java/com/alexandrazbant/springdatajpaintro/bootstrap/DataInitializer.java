@@ -3,8 +3,10 @@ package com.alexandrazbant.springdatajpaintro.bootstrap;
 import com.alexandrazbant.springdatajpaintro.domain.Book;
 import com.alexandrazbant.springdatajpaintro.repositories.BookRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+@Profile({"local", "default"})
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -16,14 +18,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        bookRepository.deleteAll();
 
         Book bookDDD = new Book("Domain Driven Design", "123", "RandomHouse");
-
-        System.out.println("Id: " + bookDDD.getId());
-
         Book saveDDD = bookRepository.save(bookDDD);
-
-        System.out.println("Id: " + saveDDD.getId());
 
         Book bookSIA = new Book("Spring In Action", "15412", "O'Reilly");
         Book saveSIA = bookRepository.save(bookSIA);
