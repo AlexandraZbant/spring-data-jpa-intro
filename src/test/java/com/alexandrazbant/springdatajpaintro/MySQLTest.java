@@ -2,6 +2,9 @@ package com.alexandrazbant.springdatajpaintro;
 
 import com.alexandrazbant.springdatajpaintro.domain.AuthorUuid;
 import com.alexandrazbant.springdatajpaintro.domain.BookUuid;
+import com.alexandrazbant.springdatajpaintro.domain.composite.AuthorComposite;
+import com.alexandrazbant.springdatajpaintro.domain.composite.NameId;
+import com.alexandrazbant.springdatajpaintro.repositories.AuthorCompositeRepository;
 import com.alexandrazbant.springdatajpaintro.repositories.AuthorUuidRepository;
 import com.alexandrazbant.springdatajpaintro.repositories.BookRepository;
 import com.alexandrazbant.springdatajpaintro.repositories.BookUuidRepository;
@@ -28,6 +31,9 @@ public class MySQLTest {
     BookUuidRepository bookUuidRepository;
     @Autowired
     AuthorUuidRepository authorUuidRepository;
+    @Autowired
+    AuthorCompositeRepository authorCompositeRepository;
+
 
     @Test
     void testMySQL(){
@@ -50,6 +56,22 @@ public class MySQLTest {
         assertThat(authorUuid.getId()).isNotNull();
 
         Optional<AuthorUuid> fetched = authorUuidRepository.findById(authorUuid.getId());
+        assertThat(fetched).isNotNull();
+    }
+
+
+    @Test
+    void authorCompositeTest() {
+        NameId nameId = new NameId("John", "T");
+        AuthorComposite authorComposite = new AuthorComposite();
+        authorComposite.setFirstName(nameId.getFirstName());
+        authorComposite.setLastName(nameId.getLastName());
+        authorComposite.setCountry("US");
+
+        AuthorComposite saved = authorCompositeRepository.save(authorComposite);
+        assertThat(saved).isNotNull();
+
+        Optional<AuthorComposite> fetched = authorCompositeRepository.findById(nameId);
         assertThat(fetched).isNotNull();
     }
 
