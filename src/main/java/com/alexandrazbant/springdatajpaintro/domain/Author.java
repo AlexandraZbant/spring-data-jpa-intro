@@ -1,8 +1,8 @@
 package com.alexandrazbant.springdatajpaintro.domain;
 
+
 import jakarta.persistence.*;
 import lombok.*;
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
