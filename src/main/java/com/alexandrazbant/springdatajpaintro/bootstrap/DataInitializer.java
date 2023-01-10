@@ -8,9 +8,12 @@ import com.alexandrazbant.springdatajpaintro.repositories.BookRepository;
 import com.alexandrazbant.springdatajpaintro.repositories.BookUuidRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+
 @AllArgsConstructor
+@Profile({"local", "default"})
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -22,13 +25,16 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         bookRepository.deleteAll();
+
         authorUuidRepository.deleteAll();
         bookUuidRepository.deleteAll();
+
 
         Book bookDDD = new Book("Domain Driven Design", "123", "RandomHouse", null);
         Book saveDDD = bookRepository.save(bookDDD);
 
         Book bookSIA = new Book("Spring In Action", "15412", "O'Reilly", null);
+
         Book saveSIA = bookRepository.save(bookSIA);
 
         bookRepository.findAll().forEach(book -> {
