@@ -30,7 +30,7 @@ public class SpringDataJpaTests {
 
         long countBefore = bookRepository.count();
 
-        bookRepository.save(new Book("MyBook", "12345678", "Publisher"));
+        bookRepository.save(new Book("MyBook", "12345678", "Publisher", null));
 
         long countAfter = bookRepository.count();
 

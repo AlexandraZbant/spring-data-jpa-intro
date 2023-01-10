@@ -1,11 +1,8 @@
 package com.alexandrazbant.springdatajpaintro.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
 
+import jakarta.persistence.*;
+import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +17,5 @@ public class Author {
 
     private String firstName;
     private String lastName;
-
-
 
 }
