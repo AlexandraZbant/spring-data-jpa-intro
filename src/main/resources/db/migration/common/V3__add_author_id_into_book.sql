@@ -1,0 +1,1 @@
+ALTER TABLE book ADD author_id bigint REFERENCES author(id);
